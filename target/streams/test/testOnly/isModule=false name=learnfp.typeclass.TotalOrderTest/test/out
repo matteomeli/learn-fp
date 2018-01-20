@@ -1,0 +1,7 @@
+[0m[[0m[0minfo[0m] [0m[0m[32mTotalOrderTest:[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mtotal order[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should compare ints[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mtotal order[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should compare strings[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mtotal order[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should compare list of ints[0m[0m

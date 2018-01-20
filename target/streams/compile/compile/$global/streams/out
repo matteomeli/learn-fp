@@ -1,0 +1,7 @@
+[0m[[0m[31merror[0m] [0m[0mC:\Users\matte\Code\learn-fp\src\main\scala\learnfp\typeclass\Show.scala:31:21: empty character literal[0m
+[0m[[0m[31merror[0m] [0m[0m      s"[${loop(xs, '')}]"[0m
+[0m[[0m[31merror[0m] [0m[0m                    ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\matte\Code\learn-fp\src\main\scala\learnfp\typeclass\Show.scala:31:24: ')' expected but '}' found.[0m
+[0m[[0m[31merror[0m] [0m[0m      s"[${loop(xs, '')}]"[0m
+[0m[[0m[31merror[0m] [0m[0m                       ^[0m
+[0m[[0m[31merror[0m] [0m[0mtwo errors found[0m

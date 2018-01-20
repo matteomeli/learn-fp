@@ -1,0 +1,9 @@
+test:test-only *TypeClassTest
+test:testOnly *TypeClassTest
+test:testOnly *EqTest
+~test:testOnly *EqTest
+~test:testOnly learnfp.typeclass.*Test
+~test:testOnly learnfp.typeclass.EqTest
+~test:testOnly learnfp.typeclass.ShowTest
+~test:testOnly learnfp.typeclass.TotalOrderTest
+exit
