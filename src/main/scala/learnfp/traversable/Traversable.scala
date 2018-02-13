@@ -25,9 +25,7 @@ object TraversableInstances {
 
   implicit val tuple3TraversableInstance = new Traversable[STuple3] {
     override def traverse[A, B, F[_]](xs: (F[A], F[A], F[A]))(fx: A => B)(implicit foldable: Foldable[STuple3],
-                                                                          functor: Functor[F], applicative: Applicative[F]): F[(B, B, B)] = {
-      applicative.pure((fx `<$>` xs._1, fx `<$>` xs._2, fx `<$>` xs._3))
-    }
+                                                                          functor: Functor[F], applicative: Applicative[F]): F[(B, B, B)] = ???
   }
 
   implicit val listTraversableInstance = new Traversable[List] {
