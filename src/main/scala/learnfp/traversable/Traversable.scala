@@ -15,7 +15,9 @@ object TraversableInstances {
   import learnfp.functor.FunctorOps._
 
   implicit val idTraversableInstance = new Traversable[Id] {
-    override def traverse[A, B, F[_]](xs: Id[F[A]])(fx:A => B)(implicit foldable: Foldable[Id], functor:Functor[F], applicative: Applicative[F]): F[Id[B]] = ???
+    override def traverse[A, B, F[_]](xs: Id[F[A]])(fx:A => B)(implicit foldable: Foldable[Id], functor:Functor[F], applicative: Applicative[F]): F[Id[B]] = xs.value.map { a =>
+      Id(fx(a))
+    }
   }
 
   type STuple3[A] = (A, A, A)
@@ -23,7 +25,9 @@ object TraversableInstances {
 
   implicit val tuple3TraversableInstance = new Traversable[STuple3] {
     override def traverse[A, B, F[_]](xs: (F[A], F[A], F[A]))(fx: A => B)(implicit foldable: Foldable[STuple3],
-                                                                          functor: Functor[F], applicative: Applicative[F]): F[(B, B, B)] = ???
+                                                                          functor: Functor[F], applicative: Applicative[F]): F[(B, B, B)] = {
+      applicative.pure((fx `<$>` xs._1, fx `<$>` xs._2, fx `<$>` xs._3))
+    }
   }
 
   implicit val listTraversableInstance = new Traversable[List] {
