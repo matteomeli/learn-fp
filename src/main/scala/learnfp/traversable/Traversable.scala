@@ -25,19 +25,25 @@ object TraversableInstances {
 
   implicit val tuple3TraversableInstance = new Traversable[STuple3] {
     override def traverse[A, B, F[_]](xs: (F[A], F[A], F[A]))(fx: A => B)(implicit foldable: Foldable[STuple3],
-                                                                          functor: Functor[F], applicative: Applicative[F]): F[(B, B, B)] = ???
+                                                                          functor: Functor[F], applicative: Applicative[F]): F[(B, B, B)] = {
+      {(a: A, b: A, c: A) => (fx(a), fx(b), fx(c))}.curried `<$>` xs._1 `<*>` xs._2 `<*>` xs._3
+    }
   }
 
   implicit val listTraversableInstance = new Traversable[List] {
     override def traverse[A, B, F[_]](xs: List[F[A]])(fx: A => B)(implicit foldable: Foldable[List],
-                                                                  functor: Functor[F], applicative: Applicative[F]): F[List[B]] = ???
+                                                                  functor: Functor[F], applicative: Applicative[F]): F[List[B]] = {
+      listFoldable.foldr(xs)(applicative.pure(List[B]())) { (fa, fb) =>
+        {(a: A, bs: List[B]) => fx(a) :: bs}.curried `<$>` fa `<*>` fb
+      }
+    }
   }
 }
 
 class TraversableOps[A, C[_], F[_]](xs:C[F[A]])(implicit foldable: Foldable[C], traversable: Traversable[C],
                                                 functor: Functor[F], applicative: Applicative[F]) {
   def traverse[B](fx:A=>B):F[C[B]] = traversable.traverse(xs)(fx)
-  def sequence:F[C[A]] = ???
+  def sequence:F[C[A]] = traversable.traverse(xs)(identity)
 }
 
 object TraversableOps {
